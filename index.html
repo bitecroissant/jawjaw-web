@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/><meta name="renderer" content="webkit"/><meta name="force-rendering" content="webkit"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>昭昭</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     * { margin: 0; padding: 0; }
-    :root { font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; line-height: 1.5; font-weight: 400; }
+    :root { --primary-color: #fbede0; font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; line-height: 1.5; font-weight: 400; }
   </style>
   <style> @font-face { font-family: 'AlimamaDaoLiTi'; src: url('/fonts/AlimamaDaoLiTi.woff') format('woff'); font-weight: normal; font-style: normal; } </style>
   <style>
@@ -20,12 +20,13 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      background: #3a3c3b;
+      color: #fbede0;
     }
 
     .page-loading-wrapper-top-section,
     .page-loading-wrapper-middle-section,
     .page-loading-wrapper-bottom-section {
-      border: 1px solid red;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -39,6 +40,7 @@
     }
 
     .page-loading-wrapper-bottom-section-context {
+      margin-top: 20px;
       font-size: 16px;
     }
     .page-loading-wrapper-bottom-section-title.hidden,
@@ -70,11 +72,12 @@
     }
 
     .page-loading-wrapper-loading-text {
-      font-size: 16px;
+      margin-top: 8px;
+      font-size: 14px;
     }
 
     :root {
-      --page-loading-bg-linear-gradient: linear-gradient(red, red);
+      --page-loading-bg-linear-gradient: linear-gradient(var(--primary-color), var(--primary-color));
     }
 
     .page-loading-wrapper-loading {
