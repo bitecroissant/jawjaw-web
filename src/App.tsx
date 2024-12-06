@@ -5,7 +5,9 @@ export const App = defineComponent({
     return () => {
       return (<>
         <div>OTP(one time password)</div>
-        <input />
+        <input autocomplete="one-time-code"
+        inputmode="numeric" 
+        />
       </>)
     }
   }
