@@ -1,0 +1,117 @@
+:root {}
+
+.tmp-wrapper {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.otp-input {
+  width: 60px;
+  aspect-ratio: 1;
+  outline: none;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  transition: box-shadow 250ms;
+  font-size: 24px;
+  font-weight: bold;
+  color: #303531;
+  text-align: center;
+
+  // 光标样式
+  caret-color: #2F85EC;
+
+
+  &+& {
+    margin-left: 24px;
+  }
+
+  &:focus {
+
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16),
+      0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+}
+
+.txt-btn {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  &:focus,
+  &:hover,
+  &:active {
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+}
+
+
+
+@media screen and (max-width: 399px) {
+  .otp-input {
+    width: 48px;
+
+    &+& {
+      margin-left: 24px;
+    }
+  }
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
