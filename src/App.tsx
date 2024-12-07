@@ -5,7 +5,7 @@ export const App = defineComponent({
   setup() {
     return () => {
       return (<>
-        <div>OTP(one time password)</div>
+        <header class="signin-header">欢迎登陆昭昭</header>
         <Otp />
       </>)
     }

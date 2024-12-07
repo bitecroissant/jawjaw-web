@@ -1,7 +1,8 @@
 import { createApp } from 'vue'
 // import { createMemoryHistory, createRouter } from 'vue-router'
 import './style.scss'
-import { App } from './App'
+// import { App } from './App'
+import { SignInPage } from './views/SginInPage'
 // import { SignInPage } from './views/SginInPage'
 // import { Home } from './views/Home'
 
@@ -17,5 +18,5 @@ import { App } from './App'
 
 
 setTimeout(() => {
-    createApp(App).mount('#app')
+    createApp(SignInPage).mount('#app')
 }, 1600)
