@@ -4,9 +4,9 @@ import './App.scss'
 import vhCheck from "vh-check";
 import 'virtual:uno.css'
 
+vhCheck()
 export const App = defineComponent({
   setup() {
-    vhCheck()
     return () => {
       return (<>
         <RouterView />

@@ -169,18 +169,27 @@
   </div>
 
   <script>
-    const font = new FontFace('AlimamaDaoLiTi', 'url(/fonts/AlimamaDaoLiTi.woff)');
-    font.load().then((loadedFont) => {
-      if (loadedFont) {
-        document.fonts.add(loadedFont);
-      }
+    if (document.fonts.check('16px "AlimamaDaoLiTi"')) {
       const title = document.getElementById('title');
       const content = document.getElementById('content');
       if (title && content) {
         title.classList.add('visible');
         content.classList.add('visible');
       }
-    })
+    } else {
+      const font = new FontFace('AlimamaDaoLiTi', 'url(/fonts/AlimamaDaoLiTi.woff)');
+      font.load().then((loadedFont) => {
+        if (loadedFont) {
+          document.fonts.add(loadedFont);
+        }
+        const title = document.getElementById('title');
+        const content = document.getElementById('content');
+        if (title && content) {
+          title.classList.add('visible');
+          content.classList.add('visible');
+        }
+      })
+    }
   </script>
   <script type="module" src="/src/main.ts"></script>
 </body>

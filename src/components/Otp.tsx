@@ -47,10 +47,17 @@ export const Otp = defineComponent({
 
     const handleCodeInput = (e: Event, index: number) => {
       const t = (e.target as HTMLInputElement)
-      t.value = t.value.toUpperCase()
+      if ((e as InputEvent).inputType === "insertCompositionText") {
+        return;
+      }
+      t.value = t.value.toUpperCase().charAt(0);
       if (refCodeInputs.value[index] && refCodeInputs.value[index].value) {
         if (index < OTP_LEN - 1) {
-          refCodeInputs.value[index + 1].focus()
+          setTimeout(() => {
+            console.log('run once')
+            console.log(e)
+            refCodeInputs.value[index + 1].focus()
+          }, 16)
         }
       }
       if (_getCodes().trim().length === OTP_LEN) {
@@ -65,9 +72,8 @@ export const Otp = defineComponent({
     const handlekeydown = (e: KeyboardEvent, index: number) => {
       const key = e.key
       if (key === 'Delete' || key === 'Backspace') {
-        if (index === OTP_LEN - 1 && refCodeInputs.value[OTP_LEN - 1].value) {
-          _setOneInputValue(OTP_LEN - 1, '')
-          refCodeInputs.value[OTP_LEN - 1].focus()
+        if (refCodeInputs.value[index].value) {
+          _setOneInputValue(index, '')
         } else if (index > 0) {
           _setOneInputValue(index - 1, '')
           refCodeInputs.value[index - 1].focus()
@@ -108,7 +114,7 @@ export const Otp = defineComponent({
         <div mt-24px flex justify-center>
           {Array.from({ length: OTP_LEN }).map((_, index) => {
             return <input ref={(el: any) => refCodeInputs.value[index] = el} key={index}
-              type="text" maxlength="1"
+              type="text" maxlength="1" pattern="[A-Za-z0-9]*"
               onInput={(e) => handleCodeInput(e, index)}
               onKeydown={(e) => handlekeydown(e, index)}
               onFocus={handleFocus}
