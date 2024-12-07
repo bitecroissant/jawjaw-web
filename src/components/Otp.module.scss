@@ -1,0 +1,69 @@
+.otpInput {
+    width: 60px;
+    aspect-ratio: 1;
+    outline: none;
+    border: 1px solid #d4d4d4;
+    border-radius: 8px;
+    transition: box-shadow 250ms;
+    font-size: 24px;
+    font-weight: bold;
+    color: #303531;
+    text-align: center;
+    margin-bottom: 32px;
+
+    // 光标样式
+    caret-color: #2F85EC;
+
+
+    &+& {
+        margin-left: 24px;
+    }
+
+    &:focus {
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16),
+            0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+}
+
+@media screen and (max-width: 398px) {
+    .otpInput {
+        width: 47px;
+
+        &+& {
+            margin-left: 23px;
+        }
+    }
+}
+
+.txtBtn {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  font-family: inherit;
+
+  &Span+&Span {
+    margin-left: 6px;
+  }
+
+  &:focus,
+  &:hover,
+  &:active {
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+
+  .succ {
+    color: #96D55D;
+  }
+
+  .fail {
+    color: #DE3123;
+  }
+}

@@ -1,5 +1,6 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import { Loading } from './Loading';
+import s from './Otp.module.scss';
 
 const OTP_LEN = 5
 // One time password
@@ -25,16 +26,19 @@ export const Otp = defineComponent({
     const _getCodes = () => {
       return refCodeInputs.value.map(i => i.value).join('').toLowerCase()
     }
+
     const _resetLoading = () => {
       refLoading.value = true
       refValidateSuccess.value = false 
       refValidateFail.value = false 
     }
+
     const _setSucc = () => {
       refLoading.value = false
       refValidateSuccess.value = true
       console.log('jump')
     }
+
     const _setFail = () => {
       refLoading.value = false
       refValidateFail.value = true
@@ -89,7 +93,7 @@ export const Otp = defineComponent({
       refLoading.value = true
       setTimeout(() => {
         Math.random() > 0.5 ? _setFail() : _setSucc()
-      }, 800)
+      }, 1200)
     }
 
     onMounted(() => {
@@ -98,33 +102,34 @@ export const Otp = defineComponent({
 
     return () => (
       <>
-        <div class="otp-tip">
+        <div mt-80px pl-20px text-16px>
           请输入你的口令
         </div>
-        <div class="tmp-wrapper">
+        <div mt-24px flex justify-center>
           {Array.from({ length: OTP_LEN }).map((_, index) => {
             return <input ref={(el: any) => refCodeInputs.value[index] = el} key={index}
-              type="text" class="otp-input" maxlength="1"
+              type="text" maxlength="1"
               onInput={(e) => handleCodeInput(e, index)}
               onKeydown={(e) => handlekeydown(e, index)}
               onFocus={handleFocus}
               onPaste={handlePaste}
+              class={s.otpInput}
             />
           })}
 
         </div>
-        <button ref={refLoadingText} class="txt-btn">
+        <button ref={refLoadingText} class={s.txtBtn}>
           {refLoading.value}
           {
-            refLoading.value ? (<><span class="txt-btn-span" ><Loading /></span> <span class="txt-btn-span" >验证中</span></>)
+            refLoading.value ? (<><span class={s.txtBtnSpan}><Loading /></span> <span class={s.txtBtnSpan} >验证中</span></>)
               : ''
           }
           {
-            refValidateSuccess.value ? (<><span class="txt-btn-span" >✅</span> <span class="txt-btn-span succ" >登录成功，跳转中</span></>)
+            refValidateSuccess.value ? (<><span class={s.txtBtnSpan} >✅</span> <span class={[s.txtBtnSpan, s.succ]} >登录成功，跳转中</span></>)
               : ''
           }
           {
-            refValidateFail.value ? (<><span class="txt-btn-span" >🙅🏻</span> <span class="txt-btn-span fail" >口令错误，禁止登陆</span></>)
+            refValidateFail.value ? (<><span class={s.txtBtnSpan} >🙅🏻</span> <span class={[s.txtBtnSpan, s.fail]} >口令错误，禁止登陆</span></>)
               : ''
           }
         </button>

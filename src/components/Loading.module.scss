@@ -1,0 +1,32 @@
+.loading {
+    width: 18px;
+    aspect-ratio: 1;
+    display: grid;
+    animation: load 0.6s steps(8) infinite;
+    -webkit-mask: conic-gradient(from 22deg, #0003, #000);
+    mask: conic-gradient(from 22deg, #0003, #000);
+
+    &.black,
+    &.black::before {
+        background:
+            var(--page-loading-black-bg-linear-gradient) 0 50%/22% 8% no-repeat,
+            var(--page-loading-black-bg-linear-gradient) 100% 50%/22% 8% no-repeat,
+            var(--page-loading-black-bg-linear-gradient) 50% 0/8% 22% no-repeat,
+            var(--page-loading-black-bg-linear-gradient) 50% 100%/8% 22% no-repeat;
+    }
+
+    &::before {
+        content: "";
+        transform: rotate(45deg);
+    }
+
+    @keyframes load {
+        from {
+            transform: rotate(0turn)
+        }
+
+        to {
+            transform: rotate(1turn)
+        }
+    }
+}
