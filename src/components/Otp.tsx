@@ -1,11 +1,13 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import { Loading } from './Loading';
 import s from './Otp.module.scss';
+import { useRouter } from 'vue-router';
 
 const OTP_LEN = 5
 // One time password
 export const Otp = defineComponent({
   setup: () => {
+    const router = useRouter()
     const refCodeInputs = ref<HTMLInputElement[]>([])
     const refLoading = ref(false)
     const refLoadingText = ref<HTMLParagraphElement | null>(null)
@@ -36,7 +38,9 @@ export const Otp = defineComponent({
     const _setSucc = () => {
       refLoading.value = false
       refValidateSuccess.value = true
-      console.log('jump')
+      setTimeout(() => {
+        router.push('/home')
+      }, 800)
     }
 
     const _setFail = () => {
@@ -54,8 +58,6 @@ export const Otp = defineComponent({
       if (refCodeInputs.value[index] && refCodeInputs.value[index].value) {
         if (index < OTP_LEN - 1) {
           setTimeout(() => {
-            console.log('run once')
-            console.log(e)
             refCodeInputs.value[index + 1].focus()
           }, 16)
         }
