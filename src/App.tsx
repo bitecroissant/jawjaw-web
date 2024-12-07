@@ -1,12 +1,11 @@
 import { defineComponent } from "vue";
-import { Otp } from "./components/Otp";
+import { RouterView } from "vue-router";
 
 export const App = defineComponent({
   setup() {
     return () => {
       return (<>
-        <header class="signin-header">欢迎登陆昭昭</header>
-        <Otp />
+        <RouterView />
       </>)
     }
   }
