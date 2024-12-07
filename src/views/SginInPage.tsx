@@ -12,6 +12,7 @@ export const SignInPage = defineComponent({
           <p class="page-loading-wrapper-bottom-section-title">昭 昭 如 愿 · 岁 岁 安 澜</p>
           <p class="page-loading-wrapper-bottom-section-context">昭昭笔记 ，记录人生大小事。</p>
         </div>
+        <div class="bottom-bg"></div>
       </div>
     )
   }

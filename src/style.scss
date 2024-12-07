@@ -5,10 +5,13 @@
 }
 
 .signin-page {
+  position: relative;
   font-family: AlimamaDaoLiTi;
   height: 92vh;
   display: flex;
   flex-direction: column;
+  min-height: 500px;
+
 }
 
 .signin-header {
@@ -98,6 +101,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.bottom-bg {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  height: 140px;
+  bottom: -8vh;
+  background: #fc919c;
+  background: linear-gradient(to top, #fc919c, #ffffff);
+  z-index: -1;
 }
 
 .page-loading-wrapper-loading.small {
