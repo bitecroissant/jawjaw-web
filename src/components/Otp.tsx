@@ -121,7 +121,8 @@ export const Otp = defineComponent({
               onKeydown={(e) => handlekeydown(e, index)}
               onFocus={handleFocus}
               onPaste={handlePaste}
-              class={s.otpInput}
+              disabled={refLoading.value}
+              class={[s.otpInput, refLoading.value ? 'invalid' : '']}
             />
           })}
 
