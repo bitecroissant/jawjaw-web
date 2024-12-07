@@ -1,9 +1,11 @@
-import { defineComponent } from 'vue';
-import { Otp } from '../components/Otp';
+import { defineComponent } from 'vue'
+import { Otp } from '../components/Otp'
+import s from './SignInPage.module.scss'
+
 export const SignInPage = defineComponent({
   setup: () => {
     return () => (
-      <div class="signin-page">
+      <div class={s.signinPage}>
         <header class="signin-header">欢迎登陆昭昭</header>
         <br />
         <Otp />
