@@ -1,0 +1,210 @@
+.greetingTextWrapper {
+    .greetingText {
+        font-size: 24px;
+        font-weight: normal;
+        font-family: DingTalkJinBuTi;
+        outline: 1px solid blue;
+        position: relative;
+        color: var(--color-primary-text);
+
+        &::after,
+        &::before {
+            content: attr(data-glitch);
+            position: absolute;
+            top: 0;
+            left: 0;
+            // background: #dceafc;
+        }
+
+        &::before {
+            // top: -40px;
+            // overflow: hidden;
+            outline: 1px solid red;
+            text-shadow: 0 -2px var(--color-primary-text);
+            animation: xxx 3s infinite linear alternate-reverse;
+        }
+
+        &::after {
+            // top: 40px;
+            // overflow: hidden;
+            outline: 1px solid;
+            position: absolute;
+            text-shadow: 0 2px var(--color-primary-text);
+            clip-path: inset(20px 0px 4px 0px);
+            animation: yyy 3s infinite linear alternate-reverse;
+        }
+    }
+
+
+
+    @keyframes xxx {
+        0% {
+            clip-path: inset(4px 0px 38px 0px);
+        }
+
+        5% {
+            clip-path: inset(40px 0px 78px 0px);
+        }
+
+        10% {
+            clip-path: inset(40px 0px 58px 0px);
+        }
+
+        15% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        20% {
+            clip-path: inset(4px 0px 18px 0px);
+        }
+
+        25% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        30% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        35% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        40% {
+            clip-path: inset(40px 0px 0px 0px);
+        }
+
+        45% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        50% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        55% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        60% {
+            clip-path: inset(40px 0px 0px 0px);
+        }
+
+        65% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        70% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        75% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        80% {
+            clip-path: inset(4px 0px 18px 0px);
+        }
+
+        85% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        90% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        95% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+        100% {
+            clip-path: inset(104px 0px 0px 0px);
+        }
+    }
+
+
+    @keyframes yyy {
+        0% {
+            clip-path: inset(4px 0px 38px 0px);
+        }
+
+        5% {
+            clip-path: inset(40px 0px 78px 0px);
+        }
+
+        10% {
+            clip-path: inset(40px 0px 58px 0px);
+        }
+
+        15% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        20% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        25% {
+            clip-path: inset(20px 0px 4px 0px);
+        }
+
+        30% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        35% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        40% {
+            clip-path: inset(40px 0px 0px 0px);
+        }
+
+        45% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        50% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        55% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        60% {
+            clip-path: inset(40px 0px 0px 0px);
+        }
+
+        65% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        70% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        75% {
+            clip-path: inset(20px 0px 4px 0px);
+        }
+
+        80% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        85% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        90% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+
+        95% {
+            clip-path: inset(40px 0px 38px 0px);
+        }
+        100% {
+            clip-path: inset(104px 0px 0px 0px);
+        }
+    }
+}
