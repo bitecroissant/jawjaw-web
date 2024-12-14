@@ -2,203 +2,203 @@
 <html lang="zh">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
-    <meta name="renderer" content="webkit" />
-    <meta name="force-rendering" content="webkit" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <title>昭昭</title>
-    <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <meta name="renderer" content="webkit" />
+  <meta name="force-rendering" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <title>昭昭</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+    }
 
-        :root {
-            --primary-color: #fbede0;
-            font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Segoe UI, Arial, Roboto, PingFang SC, miui, Hiragino Sans GB, Microsoft Yahei, sans-serif;
-            font-synthesis: none;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-    </style>
-    <style>
-        @font-face {
-            font-family: 'AlimamaDaoLiTi';
-            src: url('/fonts/AlimamaDaoLiTi.woff') format('woff'),
-                url('/fonts/AlimamaDaoLiTi.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
+    :root {
+      --primary-color: #fbede0;
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Segoe UI, Arial, Roboto, PingFang SC, miui, Hiragino Sans GB, Microsoft Yahei, sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+  <style>
+    @font-face {
+      font-family: 'AlimamaDaoLiTi';
+      src: url('/fonts/AlimamaDaoLiTi.woff') format('woff'),
+        url('/fonts/AlimamaDaoLiTi.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-        @font-face {
-            font-family: 'DingTalkJinBuTi';
-            src: url('/fonts/DingTalkJinBuTi.woff') format('woff'),
-                url('/fonts/DingTalkJinBuTi.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-    </style>
-    <style>
-        .page-loading-wrapper {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            background: #3a3c3b;
-            color: #fbede0;
-        }
+    @font-face {
+      font-family: 'DingTalkJinBuTi';
+      src: url('/fonts/DingTalkJinBuTi.woff') format('woff'),
+        url('/fonts/DingTalkJinBuTi.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+  <style>
+    .page-loading-wrapper {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: #3a3c3b;
+      color: #fbede0;
+    }
 
-        .page-loading-wrapper-top-section,
-        .page-loading-wrapper-middle-section,
-        .page-loading-wrapper-bottom-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .page-loading-wrapper-top-section,
+    .page-loading-wrapper-middle-section,
+    .page-loading-wrapper-bottom-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .page-loading-wrapper-bottom-section-top {
-            flex: 1;
-        }
+    .page-loading-wrapper-bottom-section-top {
+      flex: 1;
+    }
 
-        .page-loading-wrapper-bottom-section-title {
-            font-size: 24px;
-        }
+    .page-loading-wrapper-bottom-section-title {
+      font-size: 24px;
+    }
 
-        .page-loading-wrapper-bottom-section-context {
-            margin-top: 20px;
-            font-size: 16px;
-        }
+    .page-loading-wrapper-bottom-section-context {
+      margin-top: 20px;
+      font-size: 16px;
+    }
 
-        .page-loading-wrapper-bottom-section-title.hidden,
-        .page-loading-wrapper-bottom-section-context.hidden {
-            visibility: hidden;
-            opacity: 0;
-        }
+    .page-loading-wrapper-bottom-section-title.hidden,
+    .page-loading-wrapper-bottom-section-context.hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
 
-        .page-loading-wrapper-bottom-section-title.hidden {
-            transform: translateY(32px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
+    .page-loading-wrapper-bottom-section-title.hidden {
+      transform: translateY(32px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
 
-        .page-loading-wrapper-bottom-section-context.hidden {
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
+    .page-loading-wrapper-bottom-section-context.hidden {
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
 
-        .page-loading-wrapper-bottom-section-title.hidden.visible,
-        .page-loading-wrapper-bottom-section-context.hidden.visible {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .page-loading-wrapper-bottom-section-title.hidden.visible,
+    .page-loading-wrapper-bottom-section-context.hidden.visible {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
 
-        .page-loading-wrapper-bottom-section {
-            font-family: "AlimamaDaoLiTi";
-            padding-bottom: 44px;
-            display: flex;
-            flex-direction: row-revert;
-        }
+    .page-loading-wrapper-bottom-section {
+      font-family: "AlimamaDaoLiTi";
+      padding-bottom: 44px;
+      display: flex;
+      flex-direction: row-revert;
+    }
 
-        .page-loading-wrapper-loading-text {
-            margin-top: 8px;
-            font-size: 14px;
-        }
+    .page-loading-wrapper-loading-text {
+      margin-top: 8px;
+      font-size: 14px;
+    }
 
-        :root {
-            --page-loading-bg-linear-gradient: linear-gradient(var(--primary-color), var(--primary-color));
-        }
+    :root {
+      --page-loading-bg-linear-gradient: linear-gradient(var(--primary-color), var(--primary-color));
+    }
 
-        .page-loading-wrapper-loading {
-            width: 32px;
-            aspect-ratio: 1;
-            display: grid;
-            animation: load 0.6s steps(8) infinite;
-            -webkit-mask: conic-gradient(from 22deg, #0003, #000);
-            mask: conic-gradient(from 22deg, #0003, #000);
-        }
+    .page-loading-wrapper-loading {
+      width: 32px;
+      aspect-ratio: 1;
+      display: grid;
+      animation: load 0.6s steps(8) infinite;
+      -webkit-mask: conic-gradient(from 22deg, #0003, #000);
+      mask: conic-gradient(from 22deg, #0003, #000);
+    }
 
-        .page-loading-wrapper-loading,
-        .page-loading-wrapper-loading::before {
-            background:
-                var(--page-loading-bg-linear-gradient) 0 50%/22% 8% no-repeat,
-                var(--page-loading-bg-linear-gradient) 100% 50%/22% 8% no-repeat,
-                var(--page-loading-bg-linear-gradient) 50% 0/8% 22% no-repeat,
-                var(--page-loading-bg-linear-gradient) 50% 100%/8% 22% no-repeat;
-        }
+    .page-loading-wrapper-loading,
+    .page-loading-wrapper-loading::before {
+      background:
+        var(--page-loading-bg-linear-gradient) 0 50%/22% 8% no-repeat,
+        var(--page-loading-bg-linear-gradient) 100% 50%/22% 8% no-repeat,
+        var(--page-loading-bg-linear-gradient) 50% 0/8% 22% no-repeat,
+        var(--page-loading-bg-linear-gradient) 50% 100%/8% 22% no-repeat;
+    }
 
-        .page-loading-wrapper-loading::before {
-            content: "";
-            transform: rotate(45deg);
-        }
+    .page-loading-wrapper-loading::before {
+      content: "";
+      transform: rotate(45deg);
+    }
 
-        @keyframes load {
-            from {
-                transform: rotate(0turn)
-            }
+    @keyframes load {
+      from {
+        transform: rotate(0turn)
+      }
 
-            to {
-                transform: rotate(1turn)
-            }
-        }
-    </style>
+      to {
+        transform: rotate(1turn)
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div id="app">
-        <div class="page-loading-wrapper">
-            <div class="page-loading-wrapper-top-section"></div>
-            <div class="page-loading-wrapper-middle-section">
-                <div class="page-loading-wrapper-loading"></div>
-                <p class="page-loading-wrapper-loading-text">正在载入昭昭...</p>
-            </div>
-            <div class="page-loading-wrapper-bottom-section">
-                <div class="page-loading-wrapper-bottom-section-top"></div>
-                <p id="title" class="page-loading-wrapper-bottom-section-title hidden">昭 昭 如 愿 · 岁 岁 安 澜</p>
-                <p id="content" class="page-loading-wrapper-bottom-section-context hidden">昭昭笔记 ，记录人生大小事。</p>
-            </div>
-        </div>
+  <div id="app">
+    <div class="page-loading-wrapper">
+      <div class="page-loading-wrapper-top-section"></div>
+      <div class="page-loading-wrapper-middle-section">
+        <div class="page-loading-wrapper-loading"></div>
+        <p class="page-loading-wrapper-loading-text">正在载入昭昭...</p>
+      </div>
+      <div class="page-loading-wrapper-bottom-section">
+        <div class="page-loading-wrapper-bottom-section-top"></div>
+        <p id="title" class="page-loading-wrapper-bottom-section-title hidden">昭 昭 如 愿 · 岁 岁 安 澜</p>
+        <p id="content" class="page-loading-wrapper-bottom-section-context hidden">昭昭笔记 ，记录人生大小事。</p>
+      </div>
     </div>
-
-    <script>
-        if (document.fonts.check('16px "AlimamaDaoLiTi"')) {
-            const title = document.getElementById('title');
-            const content = document.getElementById('content');
-            if (title && content) {
-                title.classList.add('visible');
-                content.classList.add('visible');
-            }
-        } else {
-            const font = new FontFace('AlimamaDaoLiTi', 'url(/fonts/AlimamaDaoLiTi.woff)');
-            font.load().then((loadedFont) => {
-                if (loadedFont) {
-                    document.fonts.add(loadedFont);
-                }
-                const title = document.getElementById('title');
-                const content = document.getElementById('content');
-                if (title && content) {
-                    title.classList.add('visible');
-                    content.classList.add('visible');
-                }
-            })
+  </div>
+  <div id="modal"></div>
+  <script>
+    if (document.fonts.check('16px "AlimamaDaoLiTi"')) {
+      const title = document.getElementById('title');
+      const content = document.getElementById('content');
+      if (title && content) {
+        title.classList.add('visible');
+        content.classList.add('visible');
+      }
+    } else {
+      const font = new FontFace('AlimamaDaoLiTi', 'url(/fonts/AlimamaDaoLiTi.woff)');
+      font.load().then((loadedFont) => {
+        if (loadedFont) {
+          document.fonts.add(loadedFont);
         }
-    </script>
-    <script type="module" src="/src/main.ts"></script>
+        const title = document.getElementById('title');
+        const content = document.getElementById('content');
+        if (title && content) {
+          title.classList.add('visible');
+          content.classList.add('visible');
+        }
+      })
+    }
+  </script>
+  <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

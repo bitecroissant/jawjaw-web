@@ -1,284 +1,285 @@
 .homePage {
-    background-image: linear-gradient(to bottom, #D4E6FD 15%, white 35%);
+  background-image: linear-gradient(to bottom, #D4E6FD 15%, white 35%);
+  overflow: auto;
 
-    .greetingTextWrapper {
+  .greetingTextWrapper {
+    display: flex;
+    align-items: center;
+
+
+    .greetingText {
+      font-size: 22px;
+      font-weight: normal;
+      font-family: DingTalkJinBuTi;
+      position: relative;
+      color: var(--color-primary-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &::after,
+      &::before {
+        content: attr(data-glitch);
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+      }
+
+      &::before {
+        left: -3px;
+        text-shadow: 0 -2px #f0f;
+        animation: noise-before 3s infinite linear alternate-reverse;
+      }
+
+      &::after {
+        left: 3px;
+        text-shadow: 0 2px #f0f;
+        animation: noise-after 3s infinite linear alternate-reverse;
+      }
+    }
+
+
+
+    @keyframes noise-before {
+      0% {
+        clip-path: inset(4px 0px 38px 0px);
+      }
+
+      5% {
+        clip-path: inset(40px 0px 78px 0px);
+      }
+
+      10% {
+        clip-path: inset(40px 0px 58px 0px);
+      }
+
+      15% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      20% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      25% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      30% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      35% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      40% {
+        clip-path: inset(40px 0px 0px 0px);
+      }
+
+      45% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      50% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      55% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      60% {
+        clip-path: inset(40px 0px 0px 0px);
+      }
+
+      65% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      70% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      75% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      80% {
+        clip-path: inset(4px 0px 18px 0px);
+      }
+
+      85% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      90% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      95% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      100% {
+        clip-path: inset(104px 0px 0px 0px);
+      }
+    }
+
+
+    @keyframes noise-after {
+      0% {
+        clip-path: inset(4px 0px 38px 0px);
+      }
+
+      5% {
+        clip-path: inset(40px 0px 78px 0px);
+      }
+
+      10% {
+        clip-path: inset(40px 0px 58px 0px);
+      }
+
+      15% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      20% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      25% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      30% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      35% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      40% {
+        clip-path: inset(40px 0px 0px 0px);
+      }
+
+      45% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      50% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      55% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      60% {
+        clip-path: inset(40px 0px 0px 0px);
+      }
+
+      65% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      70% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      75% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      80% {
+        clip-path: inset(20px 0px 4px 0px);
+      }
+
+      85% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      90% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      95% {
+        clip-path: inset(40px 0px 38px 0px);
+      }
+
+      100% {
+        clip-path: inset(104px 0px 0px 0px);
+      }
+    }
+  }
+
+  .eventDateList {
+
+    .eventDateCard {
+      border-radius: 12px;
+      background: #fff;
+      display: flex;
+      box-shadow: 0 8px 24px 0 rgba(149, 157, 165, 0.2);
+
+      .eventDateCardIcon {
         display: flex;
         align-items: center;
+        justify-content: center;
+        font-size: 44px;
+      }
 
+      .eventDateCardTitleAndDate {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
-        .greetingText {
-            font-size: 22px;
-            font-weight: normal;
-            font-family: DingTalkJinBuTi;
-            position: relative;
-            color: var(--color-primary-text);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-
-            &::after,
-            &::before {
-                content: attr(data-glitch);
-                position: absolute;
-                overflow: hidden;
-                top: 0;
-                left: 0;
-            }
-
-            &::before {
-                left: -3px;
-                text-shadow: 0 -2px #f0f;
-                animation: noise-before 3s infinite linear alternate-reverse;
-            }
-
-            &::after {
-                left: 3px;
-                text-shadow: 0 2px #f0f;
-                animation: noise-after 3s infinite linear alternate-reverse;
-            }
+        .eventDateCardTitle {
+          color: #595959;
+          font-weight: bold;
+          line-height: 22px;
         }
 
+        .eventDateCardDate {
+          color: #797989;
+          line-height: 20px;
+        }
+      }
 
+      .eventDateCardDaysBetweenWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-weight: bold;
+        position: relative;
 
-        @keyframes noise-before {
-            0% {
-                clip-path: inset(4px 0px 38px 0px);
-            }
-
-            5% {
-                clip-path: inset(40px 0px 78px 0px);
-            }
-
-            10% {
-                clip-path: inset(40px 0px 58px 0px);
-            }
-
-            15% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            20% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            25% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            30% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            35% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            40% {
-                clip-path: inset(40px 0px 0px 0px);
-            }
-
-            45% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            50% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            55% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            60% {
-                clip-path: inset(40px 0px 0px 0px);
-            }
-
-            65% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            70% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            75% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            80% {
-                clip-path: inset(4px 0px 18px 0px);
-            }
-
-            85% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            90% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            95% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            100% {
-                clip-path: inset(104px 0px 0px 0px);
-            }
+        .eventDateCardDaysBetween {
+          color: #2084F8;
+          margin-top: -6px;
+          z-index: 10;
         }
 
-
-        @keyframes noise-after {
-            0% {
-                clip-path: inset(4px 0px 38px 0px);
-            }
-
-            5% {
-                clip-path: inset(40px 0px 78px 0px);
-            }
-
-            10% {
-                clip-path: inset(40px 0px 58px 0px);
-            }
-
-            15% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            20% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            25% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            30% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            35% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            40% {
-                clip-path: inset(40px 0px 0px 0px);
-            }
-
-            45% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            50% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            55% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            60% {
-                clip-path: inset(40px 0px 0px 0px);
-            }
-
-            65% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            70% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            75% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            80% {
-                clip-path: inset(20px 0px 4px 0px);
-            }
-
-            85% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            90% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            95% {
-                clip-path: inset(40px 0px 38px 0px);
-            }
-
-            100% {
-                clip-path: inset(104px 0px 0px 0px);
-            }
+        .eventDateCardDaysBetweenShadow {
+          width: 48px;
+          height: 12px;
+          border-radius: 8px;
+          background: #D8E5F4;
+          position: absolute;
+          top: 60%;
+          left: 24%;
+          z-index: 9;
         }
+      }
+
+      .eventDateCardOperate {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+      }
     }
-
-    .eventDateList {
-
-        .eventDateCard {
-            border-radius: 12px;
-            background: #fff;
-            display: flex;
-            box-shadow: 0 8px 24px 0 rgba(149, 157, 165, 0.2);
-
-            .eventDateCardIcon {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 44px;
-            }
-
-            .eventDateCardTitleAndDate {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-
-                .eventDateCardTitle {
-                    color: #595959;
-                    font-weight: bold;
-                    line-height: 22px;
-                }
-
-                .eventDateCardDate {
-                    color: #797989;
-                    line-height: 20px;
-                }
-            }
-
-            .eventDateCardDaysBetweenWrapper {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                font-weight: bold;
-                position: relative;
-
-                .eventDateCardDaysBetween {
-                    color: #2084F8;
-                    margin-top: -6px;
-                    z-index: 99;
-                }
-
-                .eventDateCardDaysBetweenShadow {
-                    width: 48px;
-                    height: 12px;
-                    border-radius: 8px;
-                    background: #D8E5F4;
-                    position: absolute;
-                    top: 60%;
-                    left: 24%;
-                    z-index: 98;
-                }
-            }
-
-            .eventDateCardOperate {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 20px;
-            }
-        }
-    }
+  }
 }
