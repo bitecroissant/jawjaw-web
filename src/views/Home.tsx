@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, reactive, ref, Teleport, Transition } from 'vue';
+import { defineComponent, onMounted, reactive, ref } from 'vue';
 import s from "./Home.module.scss";
 import Typed from 'typed.js';
 import { Icon } from '../shared/Icon';

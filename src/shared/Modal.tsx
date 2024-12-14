@@ -1,4 +1,4 @@
-import { defineComponent, PropType, ref, Teleport, Transition } from 'vue';
+import { defineComponent, ref, Teleport, Transition } from 'vue';
 import s from './Modal.module.scss';
 import { onClickOutside } from '@vueuse/core';
 export const Modal = defineComponent({
