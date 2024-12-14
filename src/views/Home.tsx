@@ -1,15 +1,10 @@
 import { defineComponent, onMounted, reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
 import s from "./Home.module.scss";
 import Typed from 'typed.js';
 export const Home = defineComponent({
   setup: () => {
     const pageData = reactive({ text: '🧨 昭昭如愿，岁岁安澜' })
     const refTextWrapper = ref(null)
-    const router = useRouter()
-    const logout = () => {
-      router.replace('/sign_in')
-    }
     onMounted(() => {
       setTimeout(() => {
         pageData.text = '冬宜密雪，有碎玉聲'
