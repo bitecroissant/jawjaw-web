@@ -19,11 +19,13 @@ export const Home = defineComponent({
         })
       }, 2300)
     });
-    const x = () => {
+    const x = (ev: MouseEvent) => {
+      ev.stopPropagation()
       console.log('change icon')
     }
-    const y = () => {
-      console.log('refresh event')
+    const y = (ev: MouseEvent) => {
+      ev.preventDefault()
+      console.log('refresh')
     }
     return () => (
       <div class={s.homePage} h-vhcheck pt-20px >
@@ -33,8 +35,8 @@ export const Home = defineComponent({
           </h3>
         </div>
         <div class={s.eventDateList} px-20px pb-200px>
-          <div class={s.eventDateCard} py-18px m-y-18px>
-            <div class={s.eventDateCardIcon} ml-20px onClick={x}>
+          <div onClick={(ev) => { y(ev) }} class={s.eventDateCard} py-18px m-y-18px>
+            <div class={s.eventDateCardIcon} ml-20px onClick={(ev) => { x(ev) }}>
               <Icon name="wine" w-44px h-44px fill="#2084F8"></Icon>
             </div>
             <div class={s.eventDateCardTitleAndDate} ml-12px>
@@ -48,7 +50,7 @@ export const Home = defineComponent({
               </div>
             </div>
             <div class={s.eventDateCardOperate} p-12px >
-              
+
             </div>
           </div>
 

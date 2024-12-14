@@ -9,7 +9,7 @@ export const Icon = defineComponent({
     },
     fill: String
   },
-  setup: (props, context) => {
+  setup: (props) => {
     return () => (
       <svg class={s.icon} fill={props.fill}>
         <use xlinkHref={`#${props.name}`}></use>
