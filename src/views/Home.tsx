@@ -3,25 +3,27 @@ import s from "./Home.module.scss";
 import Typed from 'typed.js';
 import { Icon } from '../shared/Icon';
 import { Modal } from '../shared/Modal';
+import { useAjax } from '../shared/ajax';
+import { time } from '../shared/time';
 export const Home = defineComponent({
   setup: () => {
+    const { get } = useAjax()
     const pageData = reactive({ text: '🧨 昭昭如愿，岁岁安澜' })
     const refTextWrapper = ref(null)
     const refModal1Visible = ref(false)
     const refModal2Visible = ref(true)
 
-    onMounted(() => {
-      setTimeout(() => {
-        pageData.text = '冬宜密雪，有碎玉聲'
-        new Typed(refTextWrapper.value, {
-          strings: [pageData.text],
-          typeSpeed: 20,
-          onComplete: function (self) {
-            // 打印完成后隐藏光标
-            self.cursor.remove();
-          }
-        })
-      }, 2300)
+    onMounted(async () => {
+      const todayPoetryResult = (await get<PoetryLinesType>(`/poetry_line?showDate=${time().format()}`)).data
+      pageData.text = todayPoetryResult.line
+      new Typed(refTextWrapper.value, {
+        strings: [pageData.text],
+        typeSpeed: 20,
+        onComplete: function (self) {
+          // 打印完成后隐藏光标
+          self.cursor.remove();
+        }
+      })
     });
     const x = (ev: MouseEvent) => {
       ev.stopPropagation()
@@ -68,18 +70,20 @@ export const Home = defineComponent({
           close={() => refModal1Visible.value = false} modalVsible={refModal1Visible.value}>
           <div>xxxxx</div>
         </Modal>
-        <Modal title="录入" v-slots={{ default: () => (<div>
-          <label>分组</label>
-          <input disabled placeholder='瓜、陆或田'></input>
-          <label>事情</label>
-          <input disabled placeholder='理头发或换床单'></input>
-          <label>发生时间</label>
-          <input placeholder='格式为: 2025-01-01'></input>
-          <div>
-            <button>提交</button>
-            <button>取消</button>
-          </div>
-          </div>) }}
+        <Modal title="录入" v-slots={{
+          default: () => (<div>
+            <label>分组</label>
+            <input disabled placeholder='瓜、陆或田'></input>
+            <label>事情</label>
+            <input disabled placeholder='理头发或换床单'></input>
+            <label>发生时间</label>
+            <input placeholder='格式为: 2025-01-01'></input>
+            <div>
+              <button>提交</button>
+              <button>取消</button>
+            </div>
+          </div>)
+        }}
           close={() => refModal2Visible.value = false} modalVsible={refModal2Visible.value}>
         </Modal>
       </>
