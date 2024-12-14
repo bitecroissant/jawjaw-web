@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 import { Home } from '../views/Home'
 import { SignInPage } from '../views/SginInPage'
-import { ajax } from '../lib/ajax'
+import { ajax } from '../shared/ajax'
 
 export const routes: RouteRecordRaw[] = [
     { path: '/', redirect: '/home' },

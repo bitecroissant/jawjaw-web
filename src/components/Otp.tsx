@@ -1,6 +1,6 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import { Loading } from './Loading';
-import { ajax } from '../lib/ajax';
+import { ajax } from '../shared/ajax';
 import s from './Otp.module.scss';
 import { useRoute, useRouter } from 'vue-router';
 
