@@ -25,7 +25,7 @@ export const Home = defineComponent({
             {pageData.text}
           </h3>
         </div>
-        <div class={s.eventDateList} p-20px pb-200px>
+        <div class={s.eventDateList} px-20px pb-200px>
           <div class={s.eventDateCard} py-18px m-y-18px>
             <div class={s.eventDateCardIcon} ml-20px>
               😁
