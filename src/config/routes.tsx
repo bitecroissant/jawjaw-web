@@ -8,9 +8,10 @@ export const routes: RouteRecordRaw[] = [
     { path: '/sign_in', component: SignInPage },
     {
         path: '/home', component: Home,
-        beforeEnter: async (_to, _from, next) => {
-            const _token = await ajax.get<UserTokens>('/me')
-            console.log(_token)
+        beforeEnter: async (to, _from, next) => {
+            await ajax.get<UserTokens>('/me').catch(() => {
+                next('/sign_in?return_to=' + to.path)
+            })
             next()
         }
     },

@@ -1,18 +1,20 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import { Loading } from './Loading';
+import { ajax } from '../lib/ajax';
 import s from './Otp.module.scss';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const OTP_LEN = 5
 // One time password
 export const Otp = defineComponent({
   setup: () => {
-    const router = useRouter()
     const refCodeInputs = ref<HTMLInputElement[]>([])
     const refLoading = ref(false)
     const refLoadingText = ref<HTMLParagraphElement | null>(null)
     const refValidateFail = ref(false)
     const refValidateSuccess = ref(false)
+    const router = useRouter()
+    const route = useRoute()
 
     const _setOneInputValue = (index: number, val: string) => {
       refCodeInputs.value[index].value = val.toUpperCase()
@@ -31,15 +33,16 @@ export const Otp = defineComponent({
 
     const _resetLoading = () => {
       refLoading.value = true
-      refValidateSuccess.value = false 
-      refValidateFail.value = false 
+      refValidateSuccess.value = false
+      refValidateFail.value = false
     }
 
     const _setSucc = () => {
       refLoading.value = false
       refValidateSuccess.value = true
       setTimeout(() => {
-        router.push('/home')
+        const returnTo = route.query.return_to?.toString()
+        router.push(returnTo || '/')
       }, 800)
     }
 
@@ -94,14 +97,19 @@ export const Otp = defineComponent({
       submit()
     }
 
-    const submit = () => {
+    const submit = async () => {
       console.log('submit', _getCodes())
       refLoadingText.value?.focus()
       _resetLoading()
       refLoading.value = true
-      setTimeout(() => {
-        Math.random() > 0.5 ? _setFail() : _setSucc()
-      }, 1200)
+      try {
+        const response = (await ajax.post<UserTokens>('/sessions', { token: _getCodes() })).data
+        const jwt = response.jwt
+        localStorage.setItem('jwt', jwt)
+        _setSucc()
+      } catch (err) {
+        _setFail()
+      }
     }
 
     onMounted(() => {
