@@ -22,10 +22,20 @@
   align-items: center;
 
   >.modal {
-    padding: 50px 100px;
+    width: 320px;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 10px 5px 2px rgba(0, 0, 0, 0.1);
     z-index: 101;
+    > header {
+        display: flex;
+        align-items: center;
+        background: #2084F8;
+        color: white;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        > .gap {
+            flex: 1;
+        }
+    }
   }
 }

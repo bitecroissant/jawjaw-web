@@ -8,7 +8,7 @@ export const Home = defineComponent({
     const pageData = reactive({ text: '🧨 昭昭如愿，岁岁安澜' })
     const refTextWrapper = ref(null)
     const refModal1Visible = ref(false)
-    const refModal2Visible = ref(false)
+    const refModal2Visible = ref(true)
 
     onMounted(() => {
       setTimeout(() => {
@@ -68,7 +68,18 @@ export const Home = defineComponent({
           close={() => refModal1Visible.value = false} modalVsible={refModal1Visible.value}>
           <div>xxxxx</div>
         </Modal>
-        <Modal v-slots={{ default: () => (<div>22222222</div>) }}
+        <Modal title="录入" v-slots={{ default: () => (<div>
+          <label>分组</label>
+          <input disabled placeholder='瓜、陆或田'></input>
+          <label>事情</label>
+          <input disabled placeholder='理头发或换床单'></input>
+          <label>发生时间</label>
+          <input placeholder='格式为: 2025-01-01'></input>
+          <div>
+            <button>提交</button>
+            <button>取消</button>
+          </div>
+          </div>) }}
           close={() => refModal2Visible.value = false} modalVsible={refModal2Visible.value}>
         </Modal>
       </>

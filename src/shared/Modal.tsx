@@ -1,8 +1,10 @@
 import { defineComponent, ref, Teleport, Transition } from 'vue';
 import s from './Modal.module.scss';
 import { onClickOutside } from '@vueuse/core';
+import { Icon } from './Icon';
 export const Modal = defineComponent({
   props: {
+    title: String,
     modalVsible: Boolean,
     close: Function
   },
@@ -21,7 +23,16 @@ export const Modal = defineComponent({
         >
           <div v-show={props.modalVsible} class={s.modalBg} h-vhcheck>
             <div ref={refModal} class={s.modal}>
-              {slots.default?.()}
+              <header class={s.header} py-4px px-8px>
+                <span class={s.title}>{props.title}</span>
+                <span class={s.gap}></span>
+                <span onClick={() => props.close?.()}>
+                  <Icon name="close" fill='#fff'></Icon>
+                </span>
+              </header>
+              <div p-24px>
+                {slots.default?.()}
+              </div>
             </div>
           </div>
         </Transition>
