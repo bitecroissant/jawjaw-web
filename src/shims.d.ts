@@ -3,6 +3,7 @@ import * as vue from 'vue'
 declare module 'vue' {
   interface HTMLAttributes {
     flex?: boolean
+    fill?: string
     font?: string
     grid?: boolean
     block?: boolean

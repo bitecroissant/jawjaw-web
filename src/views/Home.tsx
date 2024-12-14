@@ -1,6 +1,7 @@
 import { defineComponent, onMounted, reactive, ref } from 'vue';
 import s from "./Home.module.scss";
 import Typed from 'typed.js';
+import { Icon } from '../shared/Icon';
 export const Home = defineComponent({
   setup: () => {
     const pageData = reactive({ text: '🧨 昭昭如愿，岁岁安澜' })
@@ -18,6 +19,12 @@ export const Home = defineComponent({
         })
       }, 2300)
     });
+    const x = () => {
+      console.log('change icon')
+    }
+    const y = () => {
+      console.log('refresh event')
+    }
     return () => (
       <div class={s.homePage} h-vhcheck pt-20px >
         <div class={s.greetingTextWrapper} pl-32px>
@@ -27,8 +34,8 @@ export const Home = defineComponent({
         </div>
         <div class={s.eventDateList} px-20px pb-200px>
           <div class={s.eventDateCard} py-18px m-y-18px>
-            <div class={s.eventDateCardIcon} ml-20px>
-              😁
+            <div class={s.eventDateCardIcon} ml-20px onClick={x}>
+              <Icon name="wine" w-44px h-44px fill="#2084F8"></Icon>
             </div>
             <div class={s.eventDateCardTitleAndDate} ml-12px>
               <div class={s.eventDateCardTitle} text-16px>去迪士尼还要</div>
@@ -41,7 +48,7 @@ export const Home = defineComponent({
               </div>
             </div>
             <div class={s.eventDateCardOperate} p-12px >
-              🍈
+              
             </div>
           </div>
 
