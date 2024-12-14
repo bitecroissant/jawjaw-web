@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "typed.js": "^2.1.0",
     "vh-check": "^2.0.5",
     "vue": "^3.5.13",
     "vue-router": "4"
