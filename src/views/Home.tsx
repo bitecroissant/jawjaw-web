@@ -7,7 +7,6 @@ import { useAjax } from '../shared/ajax';
 import { time } from '../shared/time';
 import { EventDateEditForm } from '../components/EventDateEditForm';
 import { EventIconSelector } from '../components/EventIconSelector';
-import { iconNameList } from '../shared/iconNameList';
 export const Home = defineComponent({
   setup: () => {
     const { get } = useAjax()
