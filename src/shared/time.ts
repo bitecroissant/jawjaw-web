@@ -30,6 +30,11 @@ export class Time {
         return new Date(this.#date)
     }
 
+    // validate
+    isInvalid() {
+        return !isNaN(this.#date.getTime())
+    }
+
     // compare
     isBefore(d: string | number | Date) {
         return this.#date < new Date(d)

@@ -20,7 +20,11 @@ export const EventDateEditForm = defineComponent({
 
     const onChangeDate = (ev: Event) => {
       const txt = (ev.target as HTMLInputElement).value
-      refLocalForm.value = { ...refLocalForm.value, happenAt: time(txt).format() }
+      if(time(txt).isInvalid()) {
+        refLocalForm.value = { ...refLocalForm.value, happenAt: time(txt).format() }
+      } else {
+        alert('🐟 本鱼塘禁止炸鱼 --.')
+      }
     }
 
     const createEvent = async (newEventDate: EventDatesTypes) => {
