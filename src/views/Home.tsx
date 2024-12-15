@@ -121,7 +121,7 @@ export const Home = defineComponent({
           default: () => (<EventDateEditForm
             initialVal={ refCurrentEditEvent.value as EventDatesTypes }
             loadEventDates={ loadEventDates }
-            close={() => refChangeIconModalVisible.value = false}
+            close={() => refEditModalVisible.value = false}
           />)
         }}
           close={() => refEditModalVisible.value = false} modalVsible={refEditModalVisible.value}>
