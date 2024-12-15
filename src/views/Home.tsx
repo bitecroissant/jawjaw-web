@@ -10,12 +10,17 @@ import { EventIconSelector } from '../components/EventIconSelector';
 import { iconNameList } from '../shared/iconNameList';
 export const Home = defineComponent({
   setup: () => {
-    const { get } = useAjax()
+    const { get, post } = useAjax()
     const todayPoetry = reactive({ line: '🧨 昭昭如愿，岁岁安澜' })
+    const refEventDates = ref<EventDatesTypes[]>([])
+    const refEventDatesLoading = ref(true)
     const refTextWrapper = ref(null)
     const refModal1Visible = ref(false)
     const refModal2Visible = ref(false)
     const refCurrentEditEvent = ref<Partial<EventDatesTypes>>({})
+
+    const today = time()
+    today.removeTime()
 
     const loadPoetry = async () => {
       const todayPoetryResult = (await get<PoetryLinesType>(`/poetry_line?showDate=${time().format()}`)).data
@@ -29,8 +34,16 @@ export const Home = defineComponent({
         }
       })
     }
-    const loadEventDates = async() => {
+    const loadEventDates = async () => {
+      const result = (await get<EventDatesTypes[]>('/event_dates')).data
+      if (result && result.length > 0) {
+        const filtered = result.filter(d => {
+          return d.datesStatus === 'active' && d.group !== 'solar_term'
+        })
+        refEventDates.value = filtered
+      }
 
+      refEventDatesLoading.value = false
     }
     onMounted(() => {
       loadPoetry()
@@ -60,25 +73,36 @@ export const Home = defineComponent({
               {todayPoetry.line}
             </h3>
           </div>
-          <div class={s.eventDateList} px-20px pb-200px>
-            <div onClick={(ev) => { y(ev) }} class={s.eventDateCard} py-18px m-y-18px>
-              <div class={s.eventDateCardIcon} ml-20px onClick={(ev) => { x(ev) }}>
-                <Icon name="wine" w-44px h-44px fill="#2084F8"></Icon>
-              </div>
-              <div class={s.eventDateCardTitleAndDate} ml-12px>
-                <div class={s.eventDateCardTitle} text-16px>去迪士尼还要</div>
-                <div class={s.eventDateCardDate} text-14px>2024-12-14</div>
-              </div>
-              <div class={s.eventDateCardDaysBetweenWrapper}>
-                <div class={s.eventDateCardDaysBetweenShadow}></div>
-                <div class={s.eventDateCardDaysBetween} text-32px>
-                  20天
-                </div>
-              </div>
-              <div class={s.eventDateCardOperate} p-12px >
-              </div>
-            </div>
-          </div>
+          {
+            refEventDatesLoading.value
+              ? (<div class={s.listLoadingWrapper}>
+                <Icon name="spinner" class={s.loading} fill="#D4D4D4"></Icon>
+              </div>)
+              : (<div class={s.eventDateList} px-20px pb-200px>
+                {refEventDates.value.map(ed => {
+                  return (<div onClick={(ev) => { y(ev) }} class={s.eventDateCard} py-18px m-y-18px>
+                    <div class={s.eventDateCardIcon} ml-20px onClick={(ev) => { x(ev) }}>
+                      <Icon name={ed.iconName || 'elephant'} w-44px h-44px fill="#2084F8"></Icon>
+                    </div>
+                    <div class={s.eventDateCardTitleAndDate} ml-12px>
+                      <div class={s.eventDateCardTitle} text-16px>
+                        {ed.eventName}{time(ed.happenAt).notBefore(today.date) ? '还要' : '过了'}
+                      </div>
+                      <div class={s.eventDateCardDate} text-14px>{ed.happenAt}</div>
+                    </div>
+                    <div class={s.eventDateCardDaysBetweenWrapper}>
+                      <div class={s.eventDateCardDaysBetweenShadow}></div>
+                      <div class={s.eventDateCardDaysBetween} text-32px>
+                        {time(ed.happenAt).calcNaturalDaysBetween(time())}天
+                      </div>
+                    </div>
+                    <div class={s.eventDateCardOperate} p-12px >
+                    </div>
+                  </div>)
+                })}
+
+              </div>)
+          }
         </div>
         <Modal title="挑选图标"
           v-slots={{

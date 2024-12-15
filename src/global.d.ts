@@ -26,6 +26,8 @@ type EventDatesTypes = {
 	happenAt: string
 	iconName: string
 	iconColor: string
+	emojiIcon: string
+	datesStatus: string
 }
 
 type UserTokens = {
