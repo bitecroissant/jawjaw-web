@@ -10,7 +10,7 @@ import { EventIconSelector } from '../components/EventIconSelector';
 import { iconNameList } from '../shared/iconNameList';
 export const Home = defineComponent({
   setup: () => {
-    const { get, post } = useAjax()
+    const { get } = useAjax()
     const todayPoetry = reactive({ line: '🧨 昭昭如愿，岁岁安澜' })
     const refEventDates = ref<EventDatesTypes[]>([])
     const refEventDatesLoading = ref(true)
