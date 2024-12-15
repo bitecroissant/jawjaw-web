@@ -11,23 +11,30 @@ import { iconNameList } from '../shared/iconNameList';
 export const Home = defineComponent({
   setup: () => {
     const { get } = useAjax()
-    const pageData = reactive({ text: '🧨 昭昭如愿，岁岁安澜' })
+    const todayPoetry = reactive({ line: '🧨 昭昭如愿，岁岁安澜' })
     const refTextWrapper = ref(null)
-    const refModal1Visible = ref(true)
+    const refModal1Visible = ref(false)
     const refModal2Visible = ref(false)
     const refCurrentEditEvent = ref<Partial<EventDatesTypes>>({})
 
-    onMounted(async () => {
+    const loadPoetry = async () => {
       const todayPoetryResult = (await get<PoetryLinesType>(`/poetry_line?showDate=${time().format()}`)).data
-      pageData.text = todayPoetryResult.line
+      todayPoetry.line = todayPoetryResult.line
       new Typed(refTextWrapper.value, {
-        strings: [pageData.text],
+        strings: [todayPoetry.line],
         typeSpeed: 20,
         onComplete: function (self) {
           // 打印完成后隐藏光标
           self.cursor.remove();
         }
       })
+    }
+    const loadEventDates = async() => {
+
+    }
+    onMounted(() => {
+      loadPoetry()
+      loadEventDates()
     });
     const x = (ev: MouseEvent) => {
       ev.stopPropagation()
@@ -49,8 +56,8 @@ export const Home = defineComponent({
       <>
         <div class={s.homePage} h-100vh pt-20px >
           <div class={s.greetingTextWrapper} pl-32px>
-            <h3 ref={refTextWrapper} data-glitch={pageData.text} class={s.greetingText} >
-              {pageData.text}
+            <h3 ref={refTextWrapper} data-glitch={todayPoetry.line} class={s.greetingText} >
+              {todayPoetry.line}
             </h3>
           </div>
           <div class={s.eventDateList} px-20px pb-200px>
@@ -71,18 +78,19 @@ export const Home = defineComponent({
               <div class={s.eventDateCardOperate} p-12px >
               </div>
             </div>
-
           </div>
         </div>
         <Modal title="挑选图标"
-          v-slots={{ default: () => (<EventIconSelector 
-            initialVal = {
-              {
-                id: refCurrentEditEvent.value.id,
-                iconName: refCurrentEditEvent.value.iconName
+          v-slots={{
+            default: () => (<EventIconSelector
+              initialVal={
+                {
+                  id: refCurrentEditEvent.value.id,
+                  iconName: refCurrentEditEvent.value.iconName
+                }
               }
-            }
-            />) }}
+            />)
+          }}
           close={() => refModal1Visible.value = false} modalVsible={refModal1Visible.value}>
         </Modal>
         <Modal title="录入" v-slots={{
