@@ -17,7 +17,7 @@ type PoetryLinesType = {
 }
 
 type EventDatesTypes = {
-	id: number
+	id: number | string
 	gmtCreate: string
 	gmtModified: string
 	isDeleted: number

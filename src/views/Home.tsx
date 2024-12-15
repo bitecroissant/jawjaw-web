@@ -15,9 +15,9 @@ export const Home = defineComponent({
     const refEventDates = ref<EventDatesTypes[]>([])
     const refEventDatesLoading = ref(true)
     const refTextWrapper = ref(null)
-    const refModal1Visible = ref(false)
-    const refModal2Visible = ref(false)
-    const refCurrentEditEvent = ref<Partial<EventDatesTypes>>({})
+    const refChangeIconModalVisible = ref(false)
+    const refEditModalVisible = ref(false)
+    const refCurrentEditEvent = ref<EventDatesTypes | {}>({})
 
     const today = time()
     today.removeTime()
@@ -35,11 +35,15 @@ export const Home = defineComponent({
       })
     }
     const loadEventDates = async () => {
+      refEventDatesLoading.value = true
       const result = (await get<EventDatesTypes[]>('/event_dates')).data
       if (result && result.length > 0) {
         const filtered = result.filter(d => {
           return d.datesStatus === 'active' && d.group !== 'solar_term'
-        })
+        }).sort((a, b) => {
+          const timeA = time(a.happenAt);
+          return timeA.isAfter(b.happenAt) ? -1 : 1;
+        });
         refEventDates.value = filtered
       }
 
@@ -49,21 +53,21 @@ export const Home = defineComponent({
       loadPoetry()
       loadEventDates()
     });
-    const x = (ev: MouseEvent) => {
+    const onClickIcon = (ev: MouseEvent, ed: EventDatesTypes) => {
       ev.stopPropagation()
+      console.log(JSON.stringify(ed))
       refCurrentEditEvent.value = {
-        id: (Math.random() * 1000),
-        iconName: iconNameList[Math.floor(Math.random() * 28) + 1]
+        ...ed
       }
-      refModal1Visible.value = true
+      refChangeIconModalVisible.value = true
     }
-    const y = (ev: MouseEvent) => {
+    const onClickCard = (ev: MouseEvent, ed: EventDatesTypes) => {
       ev.preventDefault()
+      console.log(JSON.stringify(ed))
       refCurrentEditEvent.value = {
-        group: (Math.random() * 1000).toString(),
-        eventName: (Math.random() * 1000).toString()
+        ...ed
       }
-      refModal2Visible.value = true
+      refEditModalVisible.value = true
     }
     return () => (
       <>
@@ -80,8 +84,8 @@ export const Home = defineComponent({
               </div>)
               : (<div class={s.eventDateList} px-20px pb-200px>
                 {refEventDates.value.map(ed => {
-                  return (<div onClick={(ev) => { y(ev) }} class={s.eventDateCard} py-18px m-y-18px>
-                    <div class={s.eventDateCardIcon} ml-20px onClick={(ev) => { x(ev) }}>
+                  return (<div onClick={(ev) => { onClickCard(ev, ed) }} class={s.eventDateCard} py-18px m-y-18px>
+                    <div class={s.eventDateCardIcon} ml-20px onClick={(ev) => { onClickIcon(ev, ed) }}>
                       <Icon name={ed.iconName || 'elephant'} w-44px h-44px fill="#2084F8"></Icon>
                     </div>
                     <div class={s.eventDateCardTitleAndDate} ml-12px>
@@ -107,26 +111,21 @@ export const Home = defineComponent({
         <Modal title="挑选图标"
           v-slots={{
             default: () => (<EventIconSelector
-              initialVal={
-                {
-                  id: refCurrentEditEvent.value.id,
-                  iconName: refCurrentEditEvent.value.iconName
-                }
-              }
+              initialVal={ refCurrentEditEvent.value as EventDatesTypes }
+              loadEventDates={ loadEventDates }
+              close={() => refChangeIconModalVisible.value = false}
             />)
           }}
-          close={() => refModal1Visible.value = false} modalVsible={refModal1Visible.value}>
+          close={() => refChangeIconModalVisible.value = false} modalVsible={refChangeIconModalVisible.value}>
         </Modal>
         <Modal title="录入" v-slots={{
           default: () => (<EventDateEditForm
-            initialVal={
-              {
-                group: refCurrentEditEvent.value.group,
-                eventName: refCurrentEditEvent.value.eventName
-              }
-            } />)
+            initialVal={ refCurrentEditEvent.value as EventDatesTypes }
+            loadEventDates={ loadEventDates }
+            close={() => refChangeIconModalVisible.value = false}
+          />)
         }}
-          close={() => refModal2Visible.value = false} modalVsible={refModal2Visible.value}>
+          close={() => refEditModalVisible.value = false} modalVsible={refEditModalVisible.value}>
         </Modal>
       </>
     )
