@@ -5,6 +5,7 @@ import { Icon } from '../shared/Icon';
 import { Modal } from '../shared/Modal';
 import { useAjax } from '../shared/ajax';
 import { time } from '../shared/time';
+import { EventDateEditForm } from '../components/EventDateEditForm';
 export const Home = defineComponent({
   setup: () => {
     const { get } = useAjax()
@@ -12,6 +13,7 @@ export const Home = defineComponent({
     const refTextWrapper = ref(null)
     const refModal1Visible = ref(false)
     const refModal2Visible = ref(true)
+    const refCurrentEditEvent = ref<Partial<EventDatesTypes>>({})
 
     onMounted(async () => {
       const todayPoetryResult = (await get<PoetryLinesType>(`/poetry_line?showDate=${time().format()}`)).data
@@ -28,13 +30,13 @@ export const Home = defineComponent({
     const x = (ev: MouseEvent) => {
       ev.stopPropagation()
       console.log('hi')
-      if (Math.random() > 0.5) {
-        refModal1Visible.value = true
-      } else { refModal2Visible.value = true }
+      refModal2Visible.value = true
     }
     const y = (ev: MouseEvent) => {
       ev.preventDefault()
-      console.log('refresh')
+      refCurrentEditEvent.value = {group: (Math.random() * 1000).toString(),
+         eventName: (Math.random() * 1000).toString() }
+      refModal1Visible.value = true
     }
     return () => (
       <>
@@ -71,18 +73,13 @@ export const Home = defineComponent({
           <div>xxxxx</div>
         </Modal>
         <Modal title="录入" v-slots={{
-          default: () => (<div>
-            <label>分组</label>
-            <input disabled placeholder='瓜、陆或田'></input>
-            <label>事情</label>
-            <input disabled placeholder='理头发或换床单'></input>
-            <label>发生时间</label>
-            <input placeholder='格式为: 2025-01-01'></input>
-            <div>
-              <button>提交</button>
-              <button>取消</button>
-            </div>
-          </div>)
+          default: () => (<EventDateEditForm
+            initialVal={
+              {
+                group: refCurrentEditEvent.value.group,
+                eventName: refCurrentEditEvent.value.eventName
+              }
+            } />)
         }}
           close={() => refModal2Visible.value = false} modalVsible={refModal2Visible.value}>
         </Modal>
