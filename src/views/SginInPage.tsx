@@ -5,7 +5,7 @@ import s from './SignInPage.module.scss'
 export const SignInPage = defineComponent({
   setup: () => {
     return () => (
-      <div h-vhcheck flex flex-col relative min-h="500px"
+      <div h-100vh flex flex-col relative min-h="500px"
         class={s.signinPage}>
         <header text-36px text-center mt-66px>欢迎登陆昭昭</header>
         <Otp />

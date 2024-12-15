@@ -21,7 +21,7 @@ export const Modal = defineComponent({
           leave-to-class={s.modalLeaveTo}
           leave-active-class={s.modalLeaveActive}
         >
-          <div v-show={props.modalVsible} class={s.modalBg} h-vhcheck>
+          <div v-show={props.modalVsible} class={s.modalBg} h-100vh>
             <div ref={refModal} class={s.modal}>
               <header class={s.header} py-4px px-8px>
                 <span class={s.title}>{props.title}</span>

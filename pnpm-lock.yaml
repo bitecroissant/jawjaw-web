@@ -17,9 +17,6 @@ importers:
       typed.js:
         specifier: ^2.1.0
         version: 2.1.0
-      vh-check:
-        specifier: ^2.0.5
-        version: 2.0.5
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.6.3)
@@ -1389,9 +1386,6 @@ packages:
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
-
-  vh-check@2.0.5:
-    resolution: {integrity: sha512-vHtIYWt9uLl2P2tLlatVpMwv9+ezuJCtMNjUVIpzd5Pa/dJXN8AtqkKmVRcNSlmXyCjkCkbMQX/Vs9axmdlfgg==}
 
   vite@6.0.2:
     resolution: {integrity: sha512-XdQ+VsY2tJpBsKGs0wf3U/+azx8BBpYRHFAyKm5VeEZNOJZRB63q7Sc8Iup3k0TrN3KO6QgyzFf+opSbfY1y0g==}
@@ -2832,8 +2826,6 @@ snapshots:
       browserslist: 4.24.2
       escalade: 3.2.0
       picocolors: 1.1.1
-
-  vh-check@2.0.5: {}
 
   vite@6.0.2(jiti@1.21.6)(sass@1.82.0)(tsx@4.19.2):
     dependencies:

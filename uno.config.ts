@@ -14,7 +14,7 @@ export default defineConfig({
     safelist: [
     ],
     rules: [
-        ['h-vhcheck', { height: 'calc(100vh - var(--vh-offset, 0px))' }],
+        // ['h-vhcheck', { height: 'calc(100vh - var(--vh-offset, 0px))' }],
     ],
     presets: [
         presetUno(),

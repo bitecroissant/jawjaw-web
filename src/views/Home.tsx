@@ -47,7 +47,7 @@ export const Home = defineComponent({
     }
     return () => (
       <>
-        <div class={s.homePage} h-vhcheck pt-20px >
+        <div class={s.homePage} h-100vh pt-20px >
           <div class={s.greetingTextWrapper} pl-32px>
             <h3 ref={refTextWrapper} data-glitch={pageData.text} class={s.greetingText} >
               {pageData.text}
