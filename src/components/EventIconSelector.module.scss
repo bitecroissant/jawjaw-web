@@ -1,0 +1,90 @@
+.wrapper {
+  >.iconListWrapper {
+    max-height: 440px;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+    >.iconWrapper {
+      border: 1px solid hsl(0, 6%, 93%);
+      border-radius: 8px;
+      margin: 6px;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 250ms;
+
+      &.selected {
+        box-shadow: 0 0 0 2px #2084F8;
+      }
+
+      >.icon {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  }
+
+  > .actionWrapper {
+    margin: 32px;
+    display: flex;
+    flex-direction: column-reverse;
+
+    >.button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 16px;
+      border-radius: 8px;
+      background-origin: border-box; // Invisible borders with linear gradients
+      background-color: transparent;
+      border: solid 2px transparent;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      outline: none;
+      transition: filter 400ms, color 200ms;
+
+      &:hover,
+      &:focus,
+      &:focus-within,
+      &:active {
+        transition: filter 250ms, color 200ms;
+      }
+
+
+    }
+
+    .button.buttonPrimary {
+      color: white;
+      background-image: linear-gradient(to right, #2084F8, #D4E6FD);
+
+      &:hover,
+      &:focus,
+      &:focus-within,
+      &:active {
+        color: white;
+        filter: saturate(1.4) brightness(115%);
+      }
+    }
+
+    .spin {
+      animation: spin 1.8s linear infinite;
+    }
+  }
+
+  > .tooltip {
+    color: #d4d4d4;
+    font-size: 14px;
+  }
+}
+
+@keyframes spin {
+  0%{transform: rotate(0);}
+  20%{transform: rotate(72deg);}
+  40%{transform: rotate(144deg);}
+  60%{transform: rotate(216deg);}
+  80%{transform: rotate(288deg);}
+  100%{transform: rotate(360deg);}
+}

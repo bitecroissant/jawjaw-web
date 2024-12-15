@@ -6,13 +6,15 @@ import { Modal } from '../shared/Modal';
 import { useAjax } from '../shared/ajax';
 import { time } from '../shared/time';
 import { EventDateEditForm } from '../components/EventDateEditForm';
+import { EventIconSelector } from '../components/EventIconSelector';
+import { iconNameList } from '../shared/iconNameList';
 export const Home = defineComponent({
   setup: () => {
     const { get } = useAjax()
     const pageData = reactive({ text: '🧨 昭昭如愿，岁岁安澜' })
     const refTextWrapper = ref(null)
-    const refModal1Visible = ref(false)
-    const refModal2Visible = ref(true)
+    const refModal1Visible = ref(true)
+    const refModal2Visible = ref(false)
     const refCurrentEditEvent = ref<Partial<EventDatesTypes>>({})
 
     onMounted(async () => {
@@ -29,14 +31,19 @@ export const Home = defineComponent({
     });
     const x = (ev: MouseEvent) => {
       ev.stopPropagation()
-      console.log('hi')
-      refModal2Visible.value = true
+      refCurrentEditEvent.value = {
+        id: (Math.random() * 1000),
+        iconName: iconNameList[Math.floor(Math.random() * 28) + 1]
+      }
+      refModal1Visible.value = true
     }
     const y = (ev: MouseEvent) => {
       ev.preventDefault()
-      refCurrentEditEvent.value = {group: (Math.random() * 1000).toString(),
-         eventName: (Math.random() * 1000).toString() }
-      refModal1Visible.value = true
+      refCurrentEditEvent.value = {
+        group: (Math.random() * 1000).toString(),
+        eventName: (Math.random() * 1000).toString()
+      }
+      refModal2Visible.value = true
     }
     return () => (
       <>
@@ -62,15 +69,21 @@ export const Home = defineComponent({
                 </div>
               </div>
               <div class={s.eventDateCardOperate} p-12px >
-
               </div>
             </div>
 
           </div>
         </div>
-        <Modal v-slots={{ default: () => (<div>11111111</div>) }}
+        <Modal title="挑选图标"
+          v-slots={{ default: () => (<EventIconSelector 
+            initialVal = {
+              {
+                id: refCurrentEditEvent.value.id,
+                iconName: refCurrentEditEvent.value.iconName
+              }
+            }
+            />) }}
           close={() => refModal1Visible.value = false} modalVsible={refModal1Visible.value}>
-          <div>xxxxx</div>
         </Modal>
         <Modal title="录入" v-slots={{
           default: () => (<EventDateEditForm

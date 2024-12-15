@@ -24,6 +24,8 @@ type EventDatesTypes = {
 	group: string
 	eventName: string
 	happenAt: string
+	iconName: string
+	iconColor: string
 }
 
 type UserTokens = {
