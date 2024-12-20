@@ -8,6 +8,7 @@ import { time } from '../shared/time';
 import { EventDateEditForm } from '../components/EventDateEditForm';
 import { EventIconSelector } from '../components/EventIconSelector';
 
+const DEFAULT_ICON = 'fish-solid'
 const DEFAULT_ICON_COLOR = '#2084F8'
 
 export const Home = defineComponent({
@@ -86,7 +87,7 @@ export const Home = defineComponent({
                 {refEventDates.value.map(ed => {
                   return (<div onClick={(ev) => { onClickCard(ev, ed) }} class={s.eventDateCard} py-18px m-y-18px>
                     <div class={s.eventDateCardIcon} ml-20px onClick={(ev) => { onClickIcon(ev, ed) }}>
-                      <Icon name={ed.iconName || 'elephant'} w-44px h-44px fill={ed.iconColor || DEFAULT_ICON_COLOR}></Icon>
+                      <Icon name={ed.iconName || DEFAULT_ICON } w-44px h-44px fill={ed.iconColor || DEFAULT_ICON_COLOR}></Icon>
                     </div>
                     <div class={s.eventDateCardTitleAndDate} ml-12px>
                       <div class={s.eventDateCardTitle} text-16px>
