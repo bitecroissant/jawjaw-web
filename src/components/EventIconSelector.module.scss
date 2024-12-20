@@ -83,6 +83,17 @@
     position: relative;
     width: 12rem;
     height: 1.8rem;
+    border-radius: 1px;
+    &::before {
+      content: " ";
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 3px;
+      right: 3px;
+      height: 100%;
+      border: 6px solid #fff;
+    }
     &::after {
       content: '挑选心仪的颜色';
       display: block;
