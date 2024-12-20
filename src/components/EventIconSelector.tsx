@@ -3,6 +3,9 @@ import s from './EventIconSelector.module.scss';
 import { iconNameList } from '../shared/iconNameList';
 import { Icon } from '../shared/Icon';
 import { useAjax } from '../shared/ajax';
+
+const DEFAULT_ICON_COLOR = '#2084F8'
+
 export const EventIconSelector = defineComponent({
   props: {
     initialVal: {
@@ -38,6 +41,12 @@ export const EventIconSelector = defineComponent({
       }
     }
 
+    const onPickColor = (ev: Event) => {
+      const color = (ev.target as HTMLInputElement).value
+
+      refLocalForm.value = { ...refLocalForm.value, iconColor: color }
+    }
+
     const submit = () => {
       refLoading.value = true
       updateEventDateIconName(refLocalForm.value as  EventDatesTypes)
@@ -52,13 +61,21 @@ export const EventIconSelector = defineComponent({
                 <div
                   onClick={() => changeIcon(name)}
                   class={[s.iconWrapper, name === refLocalForm.value.iconName ? s.selected : '']}>
-                  <Icon fill={`#2084F8`} name={name}
+                  <Icon fill={refLocalForm.value.iconColor || DEFAULT_ICON_COLOR} name={name}
                     class={s.icon}></Icon>
                 </div>
               )
             })
           }
         </div>
+
+        <div mt-16px flex justify-center items-center>
+          <input 
+            value={refLocalForm.value.iconColor || DEFAULT_ICON_COLOR}
+            onChange={onPickColor}
+            class={s.colorPicker} type="color" />
+        </div>
+
         <div class={s.actionWrapper}>
           <button onClick={submit} disabled={refLoading.value} class={[s.button, s.buttonPrimary]}>
             提交 {refLoading.value ? (
@@ -66,9 +83,7 @@ export const EventIconSelector = defineComponent({
             ) : null}
           </button>
         </div>
-        <div class={s.tooltip}>
-          🍗 图标颜色定义开发中，投喂鸡腿加速
-        </div>
+        
       </div>
     )
   }

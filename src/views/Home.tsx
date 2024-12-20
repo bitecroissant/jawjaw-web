@@ -7,6 +7,9 @@ import { useAjax } from '../shared/ajax';
 import { time } from '../shared/time';
 import { EventDateEditForm } from '../components/EventDateEditForm';
 import { EventIconSelector } from '../components/EventIconSelector';
+
+const DEFAULT_ICON_COLOR = '#2084F8'
+
 export const Home = defineComponent({
   setup: () => {
     const { get } = useAjax()
@@ -54,7 +57,6 @@ export const Home = defineComponent({
     });
     const onClickIcon = (ev: MouseEvent, ed: EventDatesTypes) => {
       ev.stopPropagation()
-      console.log(JSON.stringify(ed))
       refCurrentEditEvent.value = {
         ...ed
       }
@@ -62,7 +64,6 @@ export const Home = defineComponent({
     }
     const onClickCard = (ev: MouseEvent, ed: EventDatesTypes) => {
       ev.preventDefault()
-      console.log(JSON.stringify(ed))
       refCurrentEditEvent.value = {
         ...ed
       }
@@ -85,7 +86,7 @@ export const Home = defineComponent({
                 {refEventDates.value.map(ed => {
                   return (<div onClick={(ev) => { onClickCard(ev, ed) }} class={s.eventDateCard} py-18px m-y-18px>
                     <div class={s.eventDateCardIcon} ml-20px onClick={(ev) => { onClickIcon(ev, ed) }}>
-                      <Icon name={ed.iconName || 'elephant'} w-44px h-44px fill="#2084F8"></Icon>
+                      <Icon name={ed.iconName || 'elephant'} w-44px h-44px fill={ed.iconColor || DEFAULT_ICON_COLOR}></Icon>
                     </div>
                     <div class={s.eventDateCardTitleAndDate} ml-12px>
                       <div class={s.eventDateCardTitle} text-16px>

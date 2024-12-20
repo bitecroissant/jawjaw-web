@@ -98,7 +98,6 @@ export const Otp = defineComponent({
     }
 
     const submit = async () => {
-      console.log('submit', _getCodes())
       refLoadingText.value?.focus()
       _resetLoading()
       refLoading.value = true
